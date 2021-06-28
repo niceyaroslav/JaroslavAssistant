@@ -12,18 +12,19 @@ logger = logging.getLogger(__name__)
 
 
 def start(update, context):
-    """Send a message when the command /start is issued."""
-    update.message.reply_text('Hi!')
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text="I'm a bot, please talk to me!")
 
 
 def help(update, context):
     """Send a message when the command /help is issued."""
-    update.message.reply_text('Help!')
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text="No help for U, bech!")
 
 
 def echo(update, context):
-    """Echo the user message."""
-    update.message.reply_text(update.message.text)
+    context.bot.send_message(chat_id=update.effective_chat.id,
+                             text=update.message.text)
 
 
 def error(update, context):
