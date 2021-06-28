@@ -1,5 +1,5 @@
 yfinance
 python-telegram-bot
 gunicorn
-telegram
 requests
+urllib3
