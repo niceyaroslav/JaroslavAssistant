@@ -1,5 +1,7 @@
-yfinance
+yfinance>=0.1.55
 python-telegram-bot
 gunicorn
 requests
 urllib3
+telegram
+pyTelegramBotAPI
