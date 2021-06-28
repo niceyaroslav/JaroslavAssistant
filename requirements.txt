@@ -13,7 +13,6 @@ cffi==1.14.5
 chardet==4.0.0
 click==7.1.2
 cobra==0.21.0
--e git+https://gitlab.com/TFTAK/models/cobrafication.git@19c38e35484e00faa025715f62ad4d55ad84d633#egg=cobrafication
 colorama==0.4.4
 commonmark==0.9.1
 cycler==0.10.0
