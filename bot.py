@@ -1,9 +1,14 @@
 import os
+import logging
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 
 TOKEN = '964603618:AAF2JBJnsWqho3fFoY9tndxkRFjJKBPMILM'
 PORT = int(os.environ.get('PORT', 5000))
+logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                    level=logging.INFO)
+
+logger = logging.getLogger(__name__)
 
 
 def start(update, context):
@@ -20,10 +25,11 @@ def echo(update, context):
     """Echo the user message."""
     update.message.reply_text(update.message.text)
 
-# def error(update, context):
-#     """Log Errors caused by Updates."""
-#     logger.warning('Update "%s" caused error "%s"', update, context.error)
-#
+
+def error(update, context):
+    """Log Errors caused by Updates."""
+    logger.warning('Update "%s" caused error "%s"', update, context.error)
+
 
 
 def main():
@@ -44,7 +50,7 @@ def main():
     dp.add_handler(MessageHandler(Filters.text, echo))
 
     # log all errors
-    # dp.add_error_handler(error)
+    dp.add_error_handler(error)
 
     # Start the Bot
     updater.start_webhook(listen="0.0.0.0",
