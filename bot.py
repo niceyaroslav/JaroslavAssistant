@@ -3,11 +3,11 @@ import os
 # from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
 import telebot
-bot = telebot.TeleBot('TOKEN')
+
 
 TOKEN = '964603618:AAF2JBJnsWqho3fFoY9tndxkRFjJKBPMILM'
 PORT = int(os.environ.get('PORT', 8443))
-
+bot = telebot.TeleBot(TOKEN)
 
 @bot.message_handler(commands=['start', 'help'])
 def send_welcome(message):
