@@ -1,7 +1,7 @@
 from Constants import API_KEY
 from YahooService import YahooService as ys
 import telebot
-import Flask
+
 
 bot = telebot.TeleBot(API_KEY)
 service = ys()
