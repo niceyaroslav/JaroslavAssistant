@@ -1,7 +1,7 @@
 yfinance>=0.1.55
-python-telegram-bot
+pyTelegramBotAPI
 gunicorn
 requests
 urllib3
 telegram
-pyTelegramBotAPI
+python-dotenv>=0.18.0
