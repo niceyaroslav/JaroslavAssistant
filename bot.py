@@ -44,6 +44,11 @@ def get_price(message):
         token = "-".join([ys.coin_dict[coin], currency])
         price = round(service.get_data(token), 4)
         bot.send_message(chat_id=message.chat.id, text=f"Current price for this coin is {price} {currency}")
+    elif coin in ys.coin_dict.values():
+        coin = coin.upper()
+        token = "-".join([coin, currency])
+        price = round(service.get_data(token), 4)
+        bot.send_message(chat_id=message.chat.id, text=f"Current price for this coin is {price} {currency}")
     else:
         bot.send_message(chat_id=message.chat.id, text=f"Can't find data for {coin} :(")
 
