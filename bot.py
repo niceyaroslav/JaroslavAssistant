@@ -1,12 +1,12 @@
 from Constants import API_KEY
 from YahooService import YahooService as ys
 import telebot
-# from flask import Flask, request
-# import os
+from flask import Flask, request
+import os
 
 bot = telebot.TeleBot(API_KEY)
 service = ys()
-# server = Flask(__name__)
+server = Flask(__name__)
 
 
 @bot.message_handler(commands=['start'])
@@ -47,23 +47,24 @@ def get_price(message):
     else:
         bot.send_message(chat_id=message.chat.id, text=f"Can't find data for {coin} :(")
 
-# @server.route('/' + API_KEY, methods=['POST'])
-# def getMessage():
-#     json_string = request.get_data().decode('utf-8')
-#     update = telebot.types.Update.de_json(json_string)
-#     bot.process_new_updates([update])
-#     return "!", 200
-#
-#
-# @server.route("/")
-# def webhook():
-#     bot.remove_webhook()
-#     bot.set_webhook(url='https://your_heroku_project.com/' + API_KEY)
-#     return "!", 200
 
-bot.polling(none_stop=True)
+@server.route('/' + API_KEY, methods=['POST'])
+def getMessage():
+    json_string = request.get_data().decode('utf-8')
+    update = telebot.types.Update.de_json(json_string)
+    bot.process_new_updates([update])
+    return "!", 200
 
 
-# if __name__ == "__main__":
-#     server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 80)))
+@server.route("/")
+def webhook():
+    bot.remove_webhook()
+    bot.set_webhook(url='https://jaroslav-bot.herokuapp.com/' + API_KEY)
+    return "!", 200
+
+# bot.polling(none_stop=True)
+
+
+if __name__ == "__main__":
+    server.run(host="0.0.0.0", port=int(os.environ.get('PORT', 80)))
 
